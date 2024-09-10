@@ -1,7 +1,4 @@
-
-#include <beacon_confs.hpp>
 #include <beacon_defs.hpp>
-
 #include <WiFi.h>       // standard library
 #include <WebServer.h>  // standard library
 #include "SuperMon.h"   // .h file that stores your html page code
@@ -139,10 +136,17 @@ void setup() {
 void loop() {
   if(flag){
     receivedMessage = hport.listenRes();
+    
     if(receivedMessage.indexOf(id) != -1){
       receivedMessage = receivedMessage.substring(receivedMessage.indexOf(id)+id.length());
-      decoder(receivedMessage);
-      Serial.println("Received message: " + receivedMessage);
+      if(receivedMessage.length() == 10){
+        decoder(receivedMessage);
+        Serial.println("Received message: " + receivedMessage);
+      }
+      else {
+        message="";
+      }
+
     }
     
     
@@ -155,7 +159,7 @@ void loop() {
 
 
 void SendWebsite() {
-  Serial.println(flag);
+ 
   if(flag){
     lora();
     p2p();
@@ -174,7 +178,7 @@ void SendXML() {
   
 
   strcpy(XML, "<?xml version = '1.0'?>\n<Data>\n");
-  if(flag){
+  if(flag && message != ""){
     sprintf(buf, "<id>%s</id>",message.c_str());
     strcat(XML,buf);
   }
@@ -195,7 +199,7 @@ void p2p() {
     
   }
   
-  Serial.println("mod değişti p2p");
+  
 
 }
 void lora(){
@@ -208,7 +212,8 @@ void lora(){
     
   }
   
-  Serial.println("mod değişti lora");
+  
+  
 }
 void p2pListen() {  
   
@@ -227,7 +232,7 @@ void p2pListen() {
   
   String checkReturn = hport.portSend("AT+PRECV="+String(precv));
   delay(100);
-  //Serial.println(checkReturn);
+  
   while(checkReturn.indexOf("OK") == -1){
     checkReturn = hport.portSend("AT+PRECV="+String(precv));
    
@@ -254,7 +259,7 @@ void p2pListen() {
 }
 void stop(){
   flag = server.arg("stop").toInt();
-  Serial.println(flag);
+  
   message="";
   server.send(200, "text/xml", XML);
 }
