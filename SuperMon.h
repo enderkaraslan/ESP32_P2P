@@ -524,11 +524,11 @@ header label {
             <div class="input-box">
                 <label for="#">P2P configuration</label>
                 <i class='bx bxs-user'></i>
-                <input id="field1" type="text" placeholder="868000000:7:125:0:8:22" required class>
+                <input id="field1" type="text" value="868000000:7:125:0:8:22" required class>
             </div>
             <div class="input-box">
                 <label for="#">Input Parameter (PRECV)</label>
-                <input id="field2"type="text" placeholder="65534" required class>
+                <input id="field2"type="text" value="65534" required class>
             </div>
             <div class="input-box">
                 <label for="#">Mahal No</label>    
@@ -728,7 +728,7 @@ header label {
         document.getElementById("field1").addEventListener("keydown", handleTabPress);
         document.getElementById("field2").addEventListener("keydown", handleTabPress);
 
-        function handleTabPress(event) {
+        /*function handleTabPress(event) {
             if (event.key === "Tab") {
                 event.preventDefault();
                 tabPressCount++;
@@ -743,7 +743,7 @@ header label {
             } else {
                 tabPressCount = 0;
             }
-        }
+        }*/
 
         function resetUI() {
             backButton.hidden = true;
