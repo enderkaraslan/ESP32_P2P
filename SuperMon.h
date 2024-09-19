@@ -20,20 +20,30 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
         box-sizing: border-box;
         list-style: none;
         text-decoration: none;
+        
     }
+
     body {
         height: 100vh;
         font-family: "poppins";
         background: #090b0c;
     }
+
     img{
         width:100%;
     }
+
     section{
         padding-top: calc(8%);
         padding-left: calc(4.4%);
         background: transparent;
     }
+
+
+
+
+
+
 
     /* ===========================HEADER==============================*/
 
@@ -42,19 +52,26 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
         box-shadow: 0 8px 16px rgba(68, 68, 68, 0.2);
         position: fixed;
         width: 100%;
-        z-index: 5;   
+        z-index: 5;
+        
+        
     }
+
     .logo{
         width: 20%;
         
+        
     }
+
     .navbar{
+        
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin: 0 auto;
         width: 90%;
-        padding: 10px 0; 
+        padding: 10px 0;
+        
     }
     .date-time {
         margin-left: 100px;
@@ -74,23 +91,34 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
 
     /*----------------Giriş Bölümü----------------*/
     .inner_settings{
+        
         display: flex;
+        
         align-items: center;
         justify-content: center;
         margin: 0 auto;
         width: 75%;
+        
     }
 
     .child_settings{
+        
         width: 38%;
+        
     }
 
     .child_settings form {
         padding: 12% 10%;
+        
         box-shadow: 0 0px 8px rgb(55, 55, 55);
         border-radius: 15px;
         justify-content: center;
     }
+
+
+
+
+
     .child_settings form h2{
         text-align: center;
         color: #fff;
@@ -98,6 +126,7 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
         font-size: 30px;
         margin-bottom: 30px;
     }
+
     .child_settings form label {
         text-align: left; 
         color: #fff;
@@ -105,12 +134,16 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
         font-weight: 600;
         padding: 7px 35px; 
         display: block; 
+        
     }
+
+
     .child_settings form input{
         display: flex;
         width: 90%;
         padding: 3.7%;
         padding-left: 5%;
+        
         margin: 0 auto;
         margin-bottom: 25px;
         background: transparent;
@@ -119,13 +152,17 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
         color: #fff;
         border-radius:20px;
         resize: none;
+        
         transition: .15s ease-in;
     }
+
     .child_settings form input:focus{
+
         color: #fff;
         letter-spacing: 1px;
         outline: none;
     }
+
     .child_settings form input:last-child{
         margin-top: 40px;
         margin-bottom: 30px;
@@ -139,47 +176,52 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
         text-align: center;
         transition: .3s;
     }
+
     .child_settings form input:last-child:hover{
         background: #555;
         transition: .4s ease-in-out;
     }
-
 
     /*========================Base Device List===========================*/
     #base_devices {
         padding-left: 0;
         display: none;
     }
+
     .inner_base_devices {
         display: flex;
-        flex-wrap: wrap; 
+        flex-wrap: wrap; /* Kartların satırlara sığmasını sağlar */
         align-items: center;
         width: 80%;
         justify-content: space-between;
         margin: 0 auto;
-        gap: 20px; 
+        gap: 20px; /* Kartlar arasına boşluk ekler */
+        
+        
     }
+
+
     .inner_base_devices_child {
-        flex-basis: calc(31% - 20px); 
+        flex-basis: calc(31% - 20px); /* Her satırda iki kart olması için genişlik */
         color: #f9fbfb;
-        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); 
-        border-radius: 20px; 
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* Daha belirgin gölge */
+        border-radius: 20px; /* Kart kenarlarını daha yuvarlak yapmak için */
         border: 1px solid transparent;
         transition: all 0.5s ease;
-        padding: 20px; /
-        text-align: center; 
+        padding: 20px; /* İçerik boşluğunu artırır */
+        text-align: center; /* Kartın içeriğini ortalar */
         cursor: pointer;
         background: #1c1c1e;
     }
 
     .inner_base_devices_child:hover {
-        border: 1px solid #fff; 
+        border: 1px solid #fff; /* Hover'da kenar ekler */
     }
 
     .inner_base_devices_child h1 {
         font-size: 18px;
         font-weight: bold;
-        margin-bottom: 15px; 
+        margin-bottom: 15px; /* Başlık ve içerik arasına boşluk */
     }
 
     /* İlerleme çemberi */
@@ -675,10 +717,12 @@ const char PAGE_MAIN[] PROGMEM = R"=====(
                         sendConfigToServer(mahalData.id, mahalData);
                         
                     } else {
+                        saveButton.disabled = false;
                         alert("Mahal No is not registered in the system.");
                     }
                 })
                 .catch(error => {
+                    saveButton.disabled = false;
                     console.error('Fetch operation error:', error);
                     alert("There was an error fetching data. Please try again later.");
                 });
